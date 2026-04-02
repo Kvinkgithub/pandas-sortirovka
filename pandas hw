@@ -1,0 +1,20 @@
+import pandas as pd
+df = pd.read_excel('homework.xlsx')
+pd.set_option('display.max_columns', None)
+pd.set_option('display.width', 1000)
+# print(df)
+
+predmeti = ['Компьютерные сети','Основы алгоритмизации и программирования','Разработка программых модулей','Системное программирование']
+
+for i in predmeti:
+    df_sorted = df[['Ф.И. Студента', i]].sort_values(by=i, ascending=False)
+
+    print(df_sorted.to_string(index=False))
+
+df['Часы'] = df['Всего пропущено часов занятий '].str.split('ч /').str[0].apply(int)
+
+df['Двоек за прогулы'] = df['Часы'] / 2
+
+df_sorted = df[['Ф.И. Студента', 'Часы', 'Двоек за прогулы']].sort_values(by='Двоек за прогулы', ascending=False)
+
+print(df_sorted.to_string(index=False))

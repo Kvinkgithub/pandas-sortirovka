@@ -9,7 +9,7 @@ predmeti = ['Компьютерные сети','Основы алгоритми
 for i in predmeti:
     df_sorted = df[['Ф.И. Студента', i]].sort_values(by=i, ascending=False)
 
-    print(df_sorted.to_string(index=False))
+    print(df_sorted)
 
 df['Часы'] = df['Всего пропущено часов занятий '].str.split('ч /').str[0].apply(int)
 
@@ -17,4 +17,4 @@ df['Двоек за прогулы'] = df['Часы'] / 2
 
 df_sorted = df[['Ф.И. Студента', 'Часы', 'Двоек за прогулы']].sort_values(by='Двоек за прогулы', ascending=False)
 
-print(df_sorted.to_string(index=False))
+print(df_sorted)
